@@ -6,7 +6,7 @@ const products = await ProductAPI.getProducts();
 function App() {
   return (
     <div className="flex flex-col gap-3">
-      <h1 className="text-3xl font-bold underline text-center p-4 border-gray-100 border-8">
+      <h1 className="border-8 border-gray-100 p-4 text-center text-3xl font-bold underline">
         Hello world!
       </h1>
       <div>Number of products: {products.length}</div>
