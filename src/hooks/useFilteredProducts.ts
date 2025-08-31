@@ -35,7 +35,7 @@ export default function useFilteredProducts(
     }
 
     return allProducts.filter((product) => {
-      if (search && !product.name.toLowerCase().includes(search)) {
+      if (search && !product.nameLowerCase.includes(search)) {
         return false;
       }
 

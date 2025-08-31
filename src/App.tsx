@@ -44,7 +44,7 @@ export default function App() {
   }
 
   if (error) {
-    return <ErrorComponent message={error.message} />;
+    return <ErrorComponent message={error?.message} />;
   }
 
   return (

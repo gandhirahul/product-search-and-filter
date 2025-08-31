@@ -28,8 +28,12 @@ export default function useProducts() {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const response = await ProductAPI.getProducts();
-        setAllProducts(response);
+        const response: Product[] = await ProductAPI.getProducts();
+        const products = response.map((product) => ({
+          ...product,
+          nameLowerCase: product.name.toLowerCase(),
+        }));
+        setAllProducts(products);
       } catch (err: any) {
         setError(err);
       } finally {
