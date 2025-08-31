@@ -1,61 +1,158 @@
-# Overview
+# Product Catalog Demo
 
-Build a responsive product search and filter interface using React in the provided code base. The goal is to create a performant, user-friendly interface that allows users to search and filter through a product catalog.
+A responsive **Product Search & Filter Interface** built in **React** using **MUI**.
 
-Feel free to edit any file **except** the files listed in the "Provided files" section below.
+It's hosted on vercel at: https://product-search-and-filter-ejv2j515e.vercel.app/
 
-## Time Expectation
+This project fetches product data from a simulated API (`ProductAPI`) and provides search and filter functionality including price range, categories, ratings, and stock availability.
 
-1-2 hours
+---
 
-## Provided Files
+## Core Requirements
 
-`src/external-api/products.json` - Product data (55 products)
-`src/external-api/product-api.js` - API simulator class with artificial delay
+1. **Display Products**
+   - Show all products in a **grid layout**.
+   - Each product card displays:
+     - Product image
+     - Name
+     - Price (formatted as currency)
+     - Rating (visual representation)
+     - Stock status
+     - Number of reviews
 
-# Core Requirements
+2. **Search Functionality**
+   - Real-time search as the user types.
+   - Search checks product names.
+   - Debouncing implemented (minimum 300ms).
+   - Clear search button included.
 
-1. Display Products
+3. **Filter Options**
+   - Price Range: Min and max price inputs/slider.
+   - Categories: Multi-select checkboxes.
+   - Rating: Minimum rating filter (e.g., "4 stars & up").
+   - Availability: "In Stock Only" toggle.
 
-Show all products in a grid layout
-Each product card should display:
+4. **User Experience**
+   - Loading state shown while fetching products (using **MUI Skeletons**).
+   - Errors handled gracefully (API has a 5% error rate).
+   - Result count displayed.
+   - "No results found" message shown when applicable.
+   - Filters update results immediately.
 
-Product image
-Name
-Price (formatted as currency)
-Rating (visual representation preferred)
-Stock status
-Number of reviews
+---
 
-2. Search Functionality
+## Project Structure
 
-Real-time search as the user types
-Search should check product names
-Implement debouncing (minimum 300ms)
-Clear search button
+```
+src/
+├─ assets/
+├─ components/
+│ ├─ ErrorComponent.tsx
+│ ├─ Filters.tsx
+│ ├─ LoadingComponent.tsx
+│ ├─ NoResultsFound.tsx
+│ ├─ ProductCard.tsx
+│ ├─ RangeSelector.tsx
+│ ├─ SearchBar.tsx
+│ ├─ SearchResults.tsx
+│ ├─ SingleProductCard.tsx
+├─ external-api/
+│ ├─ product-api.js
+│ ├─ products.json
+├─ hooks/
+│ ├─ useDebounce.ts
+│ ├─ useFilteredProducts.ts
+│ ├─ useProducts.ts
+├─ types/
+│ ├─ products.ts
+├─ App.css
+├─ App.tsx
+├─ custom-typings.d.ts
+├─ index.css
+├─ main.tsx
+```
 
-3. Filter Options
-   Implement the following filters that work together:
+---
 
-Price Range: Min and max price inputs or slider
-Categories: Multi-select checkboxes
-Rating: Minimum rating filter (e.g., "4 stars & up")
-Availability: "In Stock Only" toggle
+## Getting Started
 
-4. User Experience
+1. Clone the repo:
 
-Show loading state while fetching products
-Handle errors gracefully (the API has a 5% error rate)
-Display result count
-Show "No results found" message when applicable
-Filters should update results immediately
+```bash
+git clone <repo-url>
+cd <repo-folder>
+```
 
-## Usage of AI assistance
+2. Install dependencies:
 
-It's ok to use AI assistance, but it's expected that you both understand the code and that you understand the design and archtecturural choices made.  
-You are not allowed to use AI assistance in the follow-up interview.
+```bash
+npm install
+# or
+yarn
+```
 
-## Handing in the assignment
+3. Run locally:
 
-Feel free to send a link to the source code + working example in the way you prefer (GH + hosted page, or on StackBlitz or similar).  
-It's also ok so hand in the assignment via a .zip file with the source code that can be run locally.
+```bash
+npm start
+# or
+yarn start
+```
+
+4. Open in browser: http://localhost:5173/
+
+## Usage
+
+- Use the search bar to filter products by name.
+- Adjust filters to narrow down results by price, category, rating, or stock.
+- Skeleton loaders display while data is being fetched.
+- If an API request fails, the error component shows the message with optional retry.
+
+## Tech Stack
+
+- React 18
+- TypeScript
+- MUI v5
+- Custom Hooks for state & filtering logic (`useProducts`, `useFilteredProducts`)
+- Simulated API with `ProductAPI` and JSON data
+
+## Notes
+
+- Filtering logic is centralized in a custom hook (`useFilteredProducts`) to keep the UI components clean.
+- Loading skeletons make the app feel responsive even with artificial network delays.
+- All icons and illustrations are from MUI; no external assets required.
+- Designed for demo purposes; performance optimized with memoization and parallel fetching of filters.
+
+## Demo
+
+Below is a demonstration of the Product Filter App in various states.
+
+### 1. Normal State
+
+The app displays products in a grid layout with all details visible: image, name, price, rating, stock status, and number of reviews.
+
+![Normal State](demo/normal-state.png)
+
+---
+
+### 2. Loading State
+
+While fetching data, skeleton loaders appear to indicate loading progress and keep the UI responsive.
+
+![Loading State](demo/loading-state.png)
+
+---
+
+### 3. Nothing Found State
+
+If the search or filters return no results, the app displays a friendly "No products found" message.
+
+![Nothing Found State](demo/nothing-found.png)
+
+---
+
+### 4. Error State
+
+If an API request fails, the error component shows the message with an optional retry button.
+
+![Error State](demo/error-state.png)
