@@ -2,7 +2,7 @@
 
 A responsive **Product Search & Filter Interface** built in **React** using **MUI**.
 
-It's hosted on vercel at: https://product-search-and-filter-ejv2j515e.vercel.app/
+It's hosted on vercel at: [product-search-and-filter.vercel.app](https://product-search-and-filter.vercel.app/)
 
 This project fetches product data from a simulated API (`ProductAPI`) and provides search and filter functionality including price range, categories, ratings, and stock availability.
 
